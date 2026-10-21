@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillNova — Développez les compétences de demain</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .toast-enter {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    .toast-show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP NAVIGATION -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+          <i class="fa-solid fa-rocket text-lg"></i>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 to-slate-800 bg-clip-text text-transparent">SkillNova</span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+        <a href="#assessment" class="hover:text-indigo-600 transition-colors">Évaluation</a>
+        <a href="#marketplace" class="hover:text-indigo-600 transition-colors">Formations</a>
+        <a href="#roadmap" class="hover:text-indigo-600 transition-colors">Notre Plan</a>
+        <a href="#mentors" class="hover:text-indigo-600 transition-colors">Mentors</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="scrollToSection('assessment')" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl text-sm font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-all">
+          Diagnostic Rapide
+        </button>
+        <button onclick="showToast('Connexion à l\'espace membre bientôt disponible !')" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-all">
+          Connexion
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100/80 text-indigo-700 text-xs font-bold tracking-wide uppercase mb-6">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>La référence Upskilling & Reskilling</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+          Les compétences d'aujourd'hui sont-elles celles de <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 bg-clip-text text-transparent">demain ?</span>
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8">
+          Face à la transformation rapide des métiers, <strong>SkillNova</strong> accompagne étudiants et diplômés pour mesurer leurs écarts de compétences et se former aux opportunités d'avenir.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="scrollToSection('assessment')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-xl shadow-indigo-200 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Évaluer mes compétences
+          </button>
+          <button onclick="scrollToSection('marketplace')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-base border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-3">
+            <i class="fa-solid fa-book-open"></i>
+            Découvrir les formations
+          </button>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-slate-200/60">
+          <div>
+            <div class="text-3xl font-extrabold text-indigo-600">85%</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Des métiers de 2030 restent à inventer</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-indigo-600">120+</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Parcours Upskilling / Reskilling</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-emerald-600">94%</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Taux d'insertion après formation</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-indigo-600">50+</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Formateurs & Mentors experts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SKILL ASSESSMENT TOOL -->
+  <section id="assessment" class="py-20 bg-white border-y border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900">Diagnostic de Compétences Interactif</h2>
+        <p class="text-slate-600 mt-2">Déterminez en 3 clics si vous avez besoin d'un approfondissement (Upskilling) ou d'une reconversion (Reskilling).</p>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
+        <!-- STEPS INDICATOR -->
+        <div class="flex justify-between items-center mb-8 relative">
+          <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-slate-100 w-full z-0"></div>
+          <div id="step-line" class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-indigo-600 w-0 transition-all duration-300 z-0"></div>
+          
+          <div class="step-node relative z-10 w-10 h-10 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-md" id="node-1">1</div>
+          <div class="step-node relative z-10 w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm" id="node-2">2</div>
+          <div class="step-node relative z-10 w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm" id="node-3">3</div>
+        </div>
+
+        <!-- FORM STEPS -->
+        <form id="assessment-form" onsubmit="event.preventDefault();">
+          
+          <!-- STEP 1: Profile -->
+          <div id="step-1" class="space-y-6">
+            <h3 class="text-xl font-bold text-slate-800">1. Quel est votre profil actuel ?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-5 flex items-center gap-4 transition-all hover:bg-indigo-50/30 option-card">
+                <input type="radio" name="profile" value="student" class="hidden" checked>
+                <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                  <div class="font-bold text-slate-800">Étudiant(e)</div>
+                  <div class="text-xs text-slate-500">En cours d'études ou fin de cursus</div>
+                </div>
+              </label>
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-5 flex items-center gap-4 transition-all hover:bg-indigo-50/30 option-card">
+                <input type="radio" name="profile" value="graduate" class="hidden">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-user-graduate"></i></div>
+                <div>
+                  <div class="font-bold text-slate-800">Jeune Diplômé(e)</div>
+                  <div class="text-xs text-slate-500">Recherche d'emploi ou 1ère expérience</div>
+                </div>
+              </label>
+            </div>
+            <div class="flex justify-end pt-4">
+              <button type="button" onclick="nextStep(2)" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all flex items-center gap-2">
+                Suivant <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Target Domain -->
+          <div id="step-2" class="space-y-6 hidden">
+            <h3 class="text-xl font-bold text-slate-800">2. Quel domaine d'avenir vous intéresse ?</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-4 text-center transition-all option-card">
+                <input type="radio" name="domain" value="IT & Développement" class="hidden" checked>
+                <i class="fa-solid fa-code text-2xl text-indigo-600 mb-2"></i>
+                <div class="font-bold text-sm text-slate-800">IT & Tech</div>
+              </label>
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-4 text-center transition-all option-card">
+                <input type="radio" name="domain" value="Data & IA" class="hidden">
+                <i class="fa-solid fa-brain text-2xl text-purple-600 mb-2"></i>
+                <div class="font-bold text-sm text-slate-800">Data & IA</div>
+              </label>
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-4 text-center transition-all option-card">
+                <input type="radio" name="domain" value="Marketing Digital" class="hidden">
+                <i class="fa-solid fa-bullhorn text-2xl text-emerald-600 mb-2"></i>
+                <div class="font-bold text-sm text-slate-800">Marketing</div>
+              </label>
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-4 text-center transition-all option-card">
+                <input type="radio" name="domain" value="Design UX/UI" class="hidden">
+                <i class="fa-solid fa-palette text-2xl text-pink-600 mb-2"></i>
+                <div class="font-bold text-sm text-slate-800">Design</div>
+              </label>
+            </div>
+            <div class="flex justify-between pt-4">
+              <button type="button" onclick="nextStep(1)" class="px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-bold hover:bg-slate-50 transition-all">
+                Retour
+              </button>
+              <button type="button" onclick="nextStep(3)" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all flex items-center gap-2">
+                Suivant <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Goal & Gap -->
+          <div id="step-3" class="space-y-6 hidden">
+            <h3 class="text-xl font-bold text-slate-800">3. Quel est votre objectif principal ?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-5 transition-all option-card">
+                <input type="radio" name="goal" value="upskill" class="hidden" checked>
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-indigo-100 text-indigo-700">UPSKILLING</span>
+                </div>
+                <div class="font-bold text-slate-800 mb-1">Perfectionnement</div>
+                <div class="text-xs text-slate-500">Je veux approfondir mes compétences actuelles pour progresser.</div>
+              </label>
+
+              <label class="cursor-pointer border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-5 transition-all option-card">
+                <input type="radio" name="goal" value="reskill" class="hidden">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-700">RESKILLING</span>
+                </div>
+                <div class="font-bold text-slate-800 mb-1">Reconversion / Transition</div>
+                <div class="text-xs text-slate-500">Je souhaite apprendre un nouveau métier ou changer de secteur.</div>
+              </label>
+            </div>
+
+            <div class="flex justify-between pt-4">
+              <button type="button" onclick="nextStep(2)" class="px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-bold hover:bg-slate-50 transition-all">
+                Retour
+              </button>
+              <button type="button" onclick="generateRecommendation()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-emerald-500 text-white font-bold hover:opacity-90 shadow-lg shadow-indigo-200 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-sparkles"></i> Générer mon bilan
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- RESULT CONTAINER -->
+        <div id="assessment-result" class="hidden space-y-6 pt-4">
+          <div class="p-6 rounded-2xl bg-indigo-50/70 border border-indigo-100">
+            <div class="flex items-center gap-3 mb-3">
+              <span id="result-badge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-indigo-600 text-white"></span>
+              <h4 id="result-title" class="text-xl font-bold text-slate-900"></h4>
+            </div>
+            <p id="result-description" class="text-sm text-slate-600 leading-relaxed mb-4"></p>
+            <div class="p-4 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+              <div>
+                <div class="text-xs text-slate-500">Recommandation personnalisée</div>
+                <div id="result-course-name" class="font-bold text-slate-800"></div>
+              </div>
+              <button onclick="scrollToSection('marketplace')" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-all">
+                Voir l'offre
+              </button>
+            </div>
+          </div>
+          <button onclick="resetAssessment()" class="text-xs text-slate-500 hover:text-indigo-600 font-semibold underline">Refaire le test</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING MARKETPLACE -->
+  <section id="marketplace" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Catalogue dynamique</span>
+          <h2 class="text-3xl font-bold text-slate-900 mt-1">Formations & Parcours Adaptés</h2>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="search-input" onkeyup="filterCourses()" placeholder="Rechercher une formation..." class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 text-sm bg-white shadow-sm">
+        </div>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <button onclick="setFilter('all')" class="filter-btn active-filter px-5 py-2.5 rounded-xl text-sm font-semibold border transition-all bg-indigo-600 text-white border-indigo-600" data-filter="all">Toutes</button>
+        <button onclick="setFilter('upskill')" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border bg-white text-slate-600 border-slate-200 hover:border-indigo-300" data-filter="upskill">Upskilling</button>
+        <button onclick="setFilter('reskill')" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border bg-white text-slate-600 border-slate-200 hover:border-indigo-300" data-filter="reskill">Reskilling</button>
+        <button onclick="setFilter('IT & Développement')" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border bg-white text-slate-600 border-slate-200 hover:border-indigo-300" data-filter="IT & Développement">IT & Dev</button>
+        <button onclick="setFilter('Data & IA')" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold border bg-white text-slate-600 border-slate-200 hover:border-indigo-300" data-filter="Data & IA">Data & IA</button>
+      </div>
+
+      <!-- COURSES GRID -->
+      <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- JS rendered courses -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP SECTION (MATCHING PRESENTATION SLIDES) -->
+  <section id="roadmap" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Feuille de Route</span>
+        <h2 class="text-3xl font-bold text-slate-900 mt-1">Le Fonctionnement de SkillNova</h2>
+        <p class="text-slate-600 mt-2">Un parcours structuré en 4 étapes pour garantir le succès de votre transition professionnelle.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-lg transition-all relative group">
+          <div class="text-4xl font-black text-indigo-200 group-hover:text-indigo-500 transition-colors mb-4">01</div>
+          <h3 class="font-bold text-lg text-slate-800 mb-2">Comprendre</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Analyse de vos acquis et des notions clés d'Upskilling et Reskilling pour définir votre cap.</p>
+          <span class="inline-block text-xs font-semibold text-indigo-600">Phase Diagnostic →</span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-lg transition-all relative group">
+          <div class="text-4xl font-black text-indigo-200 group-hover:text-indigo-500 transition-colors mb-4">02</div>
+          <h3 class="font-bold text-lg text-slate-800 mb-2">Cibler</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Identification des programmes spécifiques adaptés aux opportunités de votre région.</p>
+          <span class="inline-block text-xs font-semibold text-indigo-600">Matching Sur-Mesure →</span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-lg transition-all relative group">
+          <div class="text-4xl font-black text-indigo-200 group-hover:text-indigo-500 transition-colors mb-4">03</div>
+          <h3 class="font-bold text-lg text-slate-800 mb-2">Se Former</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Suivi de parcours dynamiques en ligne ou en présentiel avec des projets réels.</p>
+          <span class="inline-block text-xs font-semibold text-indigo-600">Apprentissage Actif →</span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-lg transition-all relative group">
+          <div class="text-4xl font-black text-indigo-200 group-hover:text-indigo-500 transition-colors mb-4">04</div>
+          <h3 class="font-bold text-lg text-slate-800 mb-2">Mentorat</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">Mise en relation directe avec des formateurs experts pour réussir votre insertion.</p>
+          <span class="inline-block text-xs font-semibold text-indigo-600">Accompagnement Pro →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTORS / TRAINERS CONNECTOR -->
+  <section id="mentors" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-indigo-600 font-bold text-xs uppercase tracking-wider">Réseau d'Experts</span>
+        <h2 class="text-3xl font-bold text-slate-900 mt-1">Formateurs & Mentors Partenaires</h2>
+        <p class="text-slate-600 mt-2">Échangez avec des professionnels expérimentés pour cadrer votre progression.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="mentors-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">
+          <i class="fa-solid fa-rocket"></i>
+        </div>
+        <span class="text-white font-bold text-lg">SkillNova</span>
+      </div>
+      <p class="text-xs text-slate-500 text-center">
+        © 2026 SkillNova — Plateforme d'Upskilling & Reskilling. Tous droits réservés.
+      </p>
+      <div class="flex gap-4 text-slate-400 text-lg">
+        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL MENTOR CONTACT -->
+  <div id="mentor-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 id="modal-mentor-name" class="font-bold text-slate-800 text-lg">Contacter le mentor</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <p class="text-xs text-slate-500">Réservez une session individuelle d'orientation de 30 minutes.</p>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Votre Nom complet</label>
+        <input type="text" id="booking-name" placeholder="Ex: Sarah Martin" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Votre Email</label>
+        <input type="email" id="booking-email" placeholder="sarah@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-indigo-500">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Votre Projet / Message</label>
+        <textarea id="booking-msg" rows="3" placeholder="Décrivez vos attentes..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+      </div>
+      <button onclick="submitBooking()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+        Confirmer la demande
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+
+  <!-- JAVASCRIPT INTERACTIVE LOGIC -->
+  <script>
+    // DATA COURSES
+    const courses = [
+      {
+        id: 1,
+        title: "Fullstack React & Node.js",
+        type: "upskill",
+        domain: "IT & Développement",
+        duration: "6 Semaines",
+        level: "Intermédiaire",
+        description: "Approfondissez vos bases JS avec l'écosystème React moderne et Express.",
+        icon: "fa-code",
+        color: "indigo"
+      },
+      {
+        id: 2,
+        title: "Data Analyst & Business Intelligence",
+        type: "reskill",
+        domain: "Data & IA",
+        duration: "12 Semaines",
+        level: "Débutant accepté",
+        description: "Reconversion complète vers l'analyse de données avec SQL, Python et PowerBI.",
+        icon: "fa-chart-pie",
+        color: "emerald"
+      },
+      {
+        id: 3,
+        title: "Prompt Engineering & IA Générative",
+        type: "upskill",
+        domain: "Data & IA",
+        duration: "3 Semaines",
+        level: "Tous niveaux",
+        description: "Boostez votre productivité professionnelle en maîtrisant les LLMs et l'IA.",
+        icon: "fa-brain",
+        color: "purple"
+      },
+      {
+        id: 4,
+        title: "UI/UX Design & Figma System",
+        type: "reskill",
+        domain: "Design UX/UI",
+        duration: "8 Semaines",
+        level: "Débutant",
+        description: "Concevez des interfaces modernes et créez un portfolio prêt pour le marché.",
+        icon: "fa-palette",
+        color: "pink"
+      },
+      {
+        id: 5,
+        title: "Growth Marketing & SEO",
+        type: "upskill",
+        domain: "Marketing Digital",
+        duration: "4 Semaines",
+        level: "Intermédiaire",
+        description: "Optimisez vos canaux d'acquisition et maîtrisez Google Ads & SEO.",
+        icon: "fa-bullhorn",
+        color: "amber"
+      },
+      {
+        id: 6,
+        title: "Cloud DevOps Fundamentals",
+        type: "reskill",
+        domain: "IT & Développement",
+        duration: "10 Semaines",
+        level: "Initié",
+        description: "Passez du développement à l'infrastructure Cloud avec Docker & AWS.",
+        icon: "fa-cloud",
+        color: "sky"
+      }
+    ];
+
+    // DATA MENTORS
+    const mentors = [
+      { name: "Kamel Benali", role: "Senior Data Scientist", domain: "Data & IA", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" },
+      { name: "Yasmine Mansour", role: "Lead UI/UX Designer", domain: "Design", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" },
+      { name: "Sami Cherif", role: "CTO & Formateur Fullstack", domain: "IT & Dev", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" }
+    ];
+
+    let currentFilter = 'all';
+
+    // RENDER COURSES
+    function renderCourses(list = courses) {
+      const container = document.getElementById('courses-grid');
+      container.innerHTML = '';
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Aucune formation ne correspond à vos critères.</div>`;
+        return;
+      }
+
+      list.forEach(course => {
+        const isUpskill = course.type === 'upskill';
+        const badgeColor = isUpskill ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700';
+        
+        container.innerHTML += `
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-xl transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold ${badgeColor} uppercase">
+                  ${course.type}
+                </span>
+                <span class="text-xs font-medium text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${course.duration}</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 mb-2">${course.title}</h3>
+              <p class="text-xs text-slate-500 leading-relaxed mb-4">${course.description}</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">${course.domain}</span>
+              <button onclick="showToast('Candidature enregistrée pour ${course.title} !')" class="px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 text-xs font-bold transition-all">
+                S'intéresser
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // RENDER MENTORS
+    function renderMentors() {
+      const container = document.getElementById('mentors-grid');
+      container.innerHTML = '';
+      mentors.forEach(m => {
+        container.innerHTML += `
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 flex items-center gap-4 hover:shadow-md transition-all">
+            <img src="${m.image}" alt="${m.name}" class="w-16 h-16 rounded-2xl object-cover">
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-base">${m.name}</h4>
+              <p class="text-xs text-slate-500">${m.role}</p>
+              <span class="inline-block mt-2 px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[10px] font-bold">${m.domain}</span>
+            </div>
+            <button onclick="openModal('${m.name}')" class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-calendar-check text-sm"></i>
+            </button>
+          </div>
+        `;
+      });
+    }
+
+    // ASSESSMENT STEPS LOGIC
+    function nextStep(step) {
+      document.getElementById('step-1').classList.add('hidden');
+      document.getElementById('step-2').classList.add('hidden');
+      document.getElementById('step-3').classList.add('hidden');
+
+      document.getElementById(`step-${step}`).classList.remove('hidden');
+
+      // Update indicators
+      const line = document.getElementById('step-line');
+      if (step === 1) line.style.width = '0%';
+      if (step === 2) line.style.width = '50%';
+      if (step === 3) line.style.width = '100%';
+
+      for(let i=1; i<=3; i++) {
+        const node = document.getElementById(`node-${i}`);
+        if (i <= step) {
+          node.classList.add('bg-indigo-600', 'text-white');
+          node.classList.remove('bg-slate-200', 'text-slate-600');
+        } else {
+          node.classList.remove('bg-indigo-600', 'text-white');
+          node.classList.add('bg-slate-200', 'text-slate-600');
+        }
+      }
+    }
+
+    function generateRecommendation() {
+      const form = document.getElementById('assessment-form');
+      const goal = form.querySelector('input[name="goal"]:checked').value;
+      const domain = form.querySelector('input[name="domain"]:checked').value;
+
+      document.getElementById('assessment-form').classList.add('hidden');
+      const resultDiv = document.getElementById('assessment-result');
+      resultDiv.classList.remove('hidden');
+
+      const badge = document.getElementById('result-badge');
+      const title = document.getElementById('result-title');
+      const desc = document.getElementById('result-description');
+      const courseName = document.getElementById('result-course-name');
+
+      if (goal === 'upskill') {
+        badge.innerText = 'PARCOURS UPSKILLING';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-indigo-600 text-white';
+        title.innerText = `Approfondissement conseillé en ${domain}`;
+        desc.innerText = `Votre profil montre une base solide. Nous vous recommandons d'approfondir vos connaissances existantes pour répondre aux exigences avancées des recuteurs.`;
+      } else {
+        badge.innerText = 'PARCOURS RESKILLING';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-600 text-white';
+        title.innerText = `Reconversion guidée vers ${domain}`;
+        desc.innerText = `Excellente opportunité ! Un programme intensif de reconversion vous permettra d'acquérir les compétences clés nécessaires pour pivoter efficacement.`;
+      }
+
+      // Match recommended course
+      const match = courses.find(c => c.domain === domain && c.type === goal) || courses[0];
+      courseName.innerText = `${match.title} (${match.duration})`;
+    }
+
+    function resetAssessment() {
+      document.getElementById('assessment-result').classList.add('hidden');
+      document.getElementById('assessment-form').classList.remove('hidden');
+      nextStep(1);
+    }
+
+    // FILTERS & SEARCH
+    function setFilter(type) {
+      currentFilter = type;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+        btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+        if (btn.dataset.filter === type) {
+          btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+        }
+      });
+      filterCourses();
+    }
+
+    function filterCourses() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const filtered = courses.filter(c => {
+        const matchesFilter = currentFilter === 'all' || c.type === currentFilter || c.domain === currentFilter;
+        const matchesQuery = c.title.toLowerCase().includes(query) || c.description.toLowerCase().includes(query);
+        return matchesFilter && matchesQuery;
+      });
+      renderCourses(filtered);
+    }
+
+    // MODAL HANDLERS
+    function openModal(mentorName) {
+      document.getElementById('modal-mentor-name').innerText = `Session avec ${mentorName}`;
+      document.getElementById('mentor-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('mentor-modal').classList.add('hidden');
+    }
+
+    function submitBooking() {
+      const name = document.getElementById('booking-name').value;
+      if (!name) {
+        showToast('Veuillez entrer votre nom.');
+        return;
+      }
+      closeModal();
+      showToast(`Demande envoyée ! Le mentor prendra contact avec vous.`);
+    }
+
+    // UTILS
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'bg-slate-900 text-white px-5 py-3 rounded-xl text-xs font-semibold shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> ${msg}`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-10', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-10');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // INIT ON LOAD
+    window.onload = function() {
+      renderCourses();
+      renderMentors();
+    };
+  </script>
+</body>
+</html>
